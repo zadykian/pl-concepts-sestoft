@@ -5,8 +5,8 @@
 	<ItemGroup>
 		<Compile Include="Implementation\Types.fs" />
 		<Compile Include="Implementation\Functions.fs" />
-		<Compile Include="Tests\EvalTests.fs" />
 		<Compile Include="Tests\Initialization.fs" />
+		<Compile Include="Tests\EvalTests.fs" />
 	</ItemGroup>
 
 </Project>
