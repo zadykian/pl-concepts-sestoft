@@ -1,8 +1,16 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
+Project("{F2A71F9B-5D33-465A-A702-920D77279786}") = "PlConcepts.Exercises.Chapter1", "PlConcepts.Exercises.Chapter1\PlConcepts.Exercises.Chapter1.fsproj", "{BD126B7D-C0DC-4196-9CFD-15DE0F1D2D1C}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
 		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{BD126B7D-C0DC-4196-9CFD-15DE0F1D2D1C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{BD126B7D-C0DC-4196-9CFD-15DE0F1D2D1C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{BD126B7D-C0DC-4196-9CFD-15DE0F1D2D1C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{BD126B7D-C0DC-4196-9CFD-15DE0F1D2D1C}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal
