@@ -1,10 +1,11 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
-	<Import Project="$(MsBuildThisFileDirectory)\..\common.props" />
+	<Import Project="$(MsBuildThisFileDirectory)\..\common.props"/>
 
 	<ItemGroup>
-		<Compile Include="Types.fs" />
-		<Compile Include="Functions.fs" />
+		<Compile Include="Implementation\Types.fs"/>
+		<Compile Include="Implementation\Functions.fs"/>
+		<Compile Include="Tests\EvalTests.fs"/>
 	</ItemGroup>
 
 </Project>
