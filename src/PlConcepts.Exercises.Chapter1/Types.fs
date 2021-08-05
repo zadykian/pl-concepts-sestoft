@@ -1,7 +1,7 @@
 module PlConcepts.Exercises.Chapter1.Types
 
 /// Binary operator.
-type binaryOp =
+type BinaryOp =
     | Plus
     | Multiply
     | Subtract
@@ -13,10 +13,10 @@ type binaryOp =
 type VarName = string
 
 /// Abstract arithmetic expression.
-type expr =
+type Expr =
     | Constant of int
     | Var      of VarName
-    | Binary   of binaryOp * expr * expr
+    | Binary   of BinaryOp * Expr * Expr
 
 /// Evaluation environment which contains named variables.
-type env = (VarName * int) list    
+type Env = (VarName * int) list
