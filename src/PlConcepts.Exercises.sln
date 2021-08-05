@@ -2,6 +2,11 @@
 Microsoft Visual Studio Solution File, Format Version 12.00
 Project("{F2A71F9B-5D33-465A-A702-920D77279786}") = "PlConcepts.Exercises.Chapter1", "PlConcepts.Exercises.Chapter1\PlConcepts.Exercises.Chapter1.fsproj", "{BD126B7D-C0DC-4196-9CFD-15DE0F1D2D1C}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = ".build", ".build", "{A4AEB09D-4D6E-4495-BF01-4D36C805F431}"
+ProjectSection(SolutionItems) = preProject
+	common.props = common.props
+EndProjectSection
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
