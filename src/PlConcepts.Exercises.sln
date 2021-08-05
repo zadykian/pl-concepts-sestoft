@@ -5,6 +5,7 @@ EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = ".build", ".build", "{A4AEB09D-4D6E-4495-BF01-4D36C805F431}"
 ProjectSection(SolutionItems) = preProject
 	common.props = common.props
+	common.test.props = common.test.props
 EndProjectSection
 EndProject
 Global

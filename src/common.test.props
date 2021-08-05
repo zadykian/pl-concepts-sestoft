@@ -1,0 +1,9 @@
+<Project>
+
+	<Import Project="$(MSBuildThisFileDirectory)\common.props"/>
+
+	<ItemGroup>
+		<PackageReference Include="NUnit" Version="3.13.2"/>
+	</ItemGroup>
+
+</Project>
