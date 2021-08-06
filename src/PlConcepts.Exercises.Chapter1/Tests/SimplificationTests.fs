@@ -14,3 +14,4 @@ let private assertSimplification (input: Expr) (expected: Expr) =
 let ``constant can't be more simple`` () =
     let expression = Constant 32
     assertSimplification expression (Constant 32)
+
