@@ -78,4 +78,4 @@ let ``parentheses save associativity`` () =
             Constant 16,
             Binary (Plus, Var "a", Constant 32))
 
-    assertFormat expression "16 - (32 + 16)"
+    assertFormat expression "16 - (a + 32)"
