@@ -9,5 +9,11 @@ let private lookup (env: Env) (varName: VarName): int option =
         return value
     }
 
+/// Empty expression evaluation environment.
+let empty: Env = []
+
 /// Evaluate expression.
-let rec eval (expr: Expr) (env: Env): int option = failwith "not implemented!"
+let rec eval (expr: Expr) (env: Env): int option =
+    match expr with
+    | Constant value -> Some value
+    | _ -> None
