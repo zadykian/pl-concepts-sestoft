@@ -29,7 +29,8 @@ let rec eval (expr: Expr) (env: Env) : int option =
                 | Min      -> min left right
         }
     | Var name -> lookup env name
-    | If (condition, ifTrue, ifFalse) -> monad {
+    | If (condition, ifTrue, ifFalse) ->
+        monad {
             let! conditionValue = eval condition env
             return! eval (if conditionValue <> 0 then ifTrue else ifFalse) env
         }
