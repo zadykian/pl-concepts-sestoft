@@ -16,6 +16,7 @@ type Expr =
     | Constant of int
     | Var      of VarName
     | Binary   of BinaryOp * Expr * Expr
+    | If       of Expr * Expr * Expr
 
 /// Evaluation environment which contains named variables.
 type Env = (VarName * int) list

@@ -54,3 +54,17 @@ let ``fail if variable is not in scope`` () =
     let expression  = Binary (Plus, Var "x", Constant 16)
     let environment = ["y", 4]
     eval expression environment |> should equal None
+
+[<Test>]
+let ``ternary operator left branch`` () =
+    let expected = 16
+    let expression  = If (Constant 2, Var "y", Constant 8)
+    let environment = ["y", expected]
+    evalAndCheck environment expression expected
+
+[<Test>]
+let ``ternary operator right branch`` () =
+    let expected = 16
+    let expression  = If (Var "x", Var "y", Constant expected)
+    let environment = ["x", 0; "y", 4]
+    evalAndCheck environment expression expected
