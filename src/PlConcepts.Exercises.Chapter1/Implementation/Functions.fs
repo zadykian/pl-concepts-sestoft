@@ -28,4 +28,4 @@ let rec eval (expr: Expr) (env: Env) : int option =
                 | Max      -> max left right
                 | Min      -> min left right
         }
-    | _ -> failwith "not implemented!"
+    | Var name -> lookup env name

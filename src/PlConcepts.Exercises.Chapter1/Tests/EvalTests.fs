@@ -6,35 +6,44 @@ open PlConcepts.Exercises.Chapter1.Functions
 
 open NUnit.Framework
 
-let private evalAndCheck (expr: Expr) (expected: int) =
-    eval expr empty |> should equal (Some expected)
+/// Evaluate expression with environment 'env' and compare result with 'expected'.
+let private evalAndCheck (env: Env) (expr: Expr) (expected: int)  =
+    eval expr env |> should equal (Some expected)
+
+/// Evaluate expression with empty environment and compare result with 'expected'.
+let private evalEmptyAndCheck = evalAndCheck empty
 
 [<Test>]
-let ``evaluate constant`` () =
+let ``single constant`` () =
     let expression = Constant 0
-    evalAndCheck expression 0
+    evalEmptyAndCheck expression 0
 
 [<Test>]
-let ``evaluate sum of two constants`` () =
-    let expression = Binary(Plus, Constant 16, Constant 16)
-    evalAndCheck expression 32
+let ``sum of two constants`` () =
+    let expression = Binary (Plus, Constant 16, Constant 16)
+    evalEmptyAndCheck expression 32
 
 [<Test>]
-let ``evaluate difference of two constants`` () =
+let ``difference of two constants`` () =
     let expression = Binary(Minus, Constant 32, Constant 8)
-    evalAndCheck expression 24
+    evalEmptyAndCheck expression 24
 
 [<Test>]
-let ``evaluate product of two constants`` () =
-    let expression = Binary(Multiply, Constant 16, Constant 16)
-    evalAndCheck expression 256
+let ``product of two constants`` () =
+    let expression = Binary (Multiply, Constant 16, Constant 16)
+    evalEmptyAndCheck expression 256
 
 [<Test>]
 let ``max of two constants`` () =
-    let expression = Binary(BinaryOp.Max, Constant 32, Constant 16)
-    evalAndCheck expression 32
+    let expression = Binary (BinaryOp.Max, Constant 32, Constant 16)
+    evalEmptyAndCheck expression 32
 
 [<Test>]
 let ``min of two constants`` () =
-    let expression = Binary(Min, Constant 32, Constant 16)
-    evalAndCheck expression 16
+    let expression = Binary (Min, Constant 32, Constant 16)
+    evalEmptyAndCheck expression 16
+
+[<Test>]
+let ``sum of constant and variable`` () =
+    let expression = Binary (Plus, Var "x", Constant 16)
+    evalAndCheck [("x", 8)] expression 24
