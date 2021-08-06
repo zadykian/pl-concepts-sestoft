@@ -3,8 +3,8 @@ module PlConcepts.Exercises.Chapter1.Types
 /// Binary operator.
 type BinaryOp =
     | Plus
-    | Multiply
     | Minus
+    | Multiply
     | Max
     | Min
 
