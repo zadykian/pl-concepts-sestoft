@@ -4,9 +4,11 @@
 
 	<ItemGroup>
 		<Compile Include="Implementation\Types.fs" />
-		<Compile Include="Implementation\Functions.fs" />
+		<Compile Include="Implementation\Evaluation.fs" />
+		<Compile Include="Implementation\Formatting.fs" />
 		<Compile Include="Tests\Initialization.fs" />
-		<Compile Include="Tests\EvalTests.fs" />
+		<Compile Include="Tests\EvaluationTests.fs" />
+		<Compile Include="Tests\FormattingTests.fs" />
 	</ItemGroup>
 
 </Project>

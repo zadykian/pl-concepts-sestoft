@@ -1,10 +1,10 @@
-module PlConcepts.Exercises.Chapter1.Tests.EvalTests
+module PlConcepts.Exercises.Chapter1.Tests.EvaluationTests
 
 open FsUnit
-open PlConcepts.Exercises.Chapter1.Types
-open PlConcepts.Exercises.Chapter1.Functions
-
 open NUnit.Framework
+
+open PlConcepts.Exercises.Chapter1.Types
+open PlConcepts.Exercises.Chapter1.Evaluation
 
 /// Evaluate expression with environment 'env' and compare result with 'expected'.
 let private evalAndCheck (env: Env) (expr: Expr) (expected: int)  =

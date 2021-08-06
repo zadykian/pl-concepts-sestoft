@@ -1,4 +1,4 @@
-module PlConcepts.Exercises.Chapter1.Functions
+module PlConcepts.Exercises.Chapter1.Evaluation
 
 open FSharpPlus
 open PlConcepts.Exercises.Chapter1.Types
