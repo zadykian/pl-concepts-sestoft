@@ -61,7 +61,7 @@ let ``parentheses in complex expression`` () =
     assertFormat expression "(a + 32) * 16"
 
 [<Test>]
-let ``absence of parentheses in expression with equal priority operators`` () =
+let ``absence of parentheses in expression with same operators`` () =
     let expression =
         Binary (
             Plus,
@@ -69,6 +69,16 @@ let ``absence of parentheses in expression with equal priority operators`` () =
             Constant 16)
 
     assertFormat expression "a + 32 + 16"
+
+[<Test>]
+let ``absence of parentheses in expression with equal priority operators`` () =
+    let expression =
+        Binary (
+            Minus,
+            Binary (Plus, Var "a", Constant 32),
+            Constant 16)
+
+    assertFormat expression "a + 32 - 16"
 
 [<Test>]
 let ``parentheses save associativity`` () =
@@ -79,3 +89,27 @@ let ``parentheses save associativity`` () =
             Binary (Plus, Var "a", Constant 32))
 
     assertFormat expression "16 - (a + 32)"
+
+[<Test>]
+let ``left associative operators sequence`` () =
+    let expression =
+        Binary (
+            Minus,
+            Binary (
+                Minus,
+                Binary (
+                    Minus, Constant 32, Constant 16),
+                Constant 8),
+            Constant 4)
+
+    assertFormat expression "32 - 16 - 8 - 4"
+
+[<Test>]
+let ``left associative operators sequence with parentheses`` () =
+    let expression =
+        Binary (
+            Minus,
+            Binary (Minus, Constant 32, Constant 16),
+            Binary (Minus, Constant 8, Constant 4))
+
+    assertFormat expression "32 - 16 - (8 - 4)"

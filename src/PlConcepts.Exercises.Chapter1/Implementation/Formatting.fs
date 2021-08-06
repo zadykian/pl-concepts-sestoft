@@ -5,27 +5,6 @@ open PlConcepts.Exercises.Chapter1.Types
 /// Binary operator priority.
 type private OpPriority = byte
 
-///// Binary operator associativity.
-//type private OpAssociativity =
-//    | Left
-//    | Right
-//    | Invariant
-
-//
-///// relative priority and associativity.
-//type private OpDef = OpPriority * OpAssociativity
-//
-//let private opDefinitions: Map<BinaryOp, OpDef> =
-//    [
-//        Plus,     (5uy, Invariant)
-//        Minus,    (5uy, Left)
-//        Multiply, (6uy, Invariant)
-//    ]
-//    |> Map.ofList
-//
-///// Get definition of binary operator 'op'.
-//let private def (op: BinaryOp): OpDef = Map.find op opDefinitions
-
 /// Lowest operator priority.
 let private lowest: OpPriority = System.Byte.MinValue
 
@@ -34,6 +13,18 @@ let private highest: OpPriority = System.Byte.MaxValue
 
 /// Get string representation of 'expr' expression.
 let rec private formatImpl (parentPriority: OpPriority) (expr: Expr): string =
+
+    let formatPlus left right =
+        let priority = 5uy
+        let formatWithPriority = formatImpl priority
+        let baseFormat = $"{formatWithPriority left} + {formatWithPriority right}"
+        if parentPriority > priority then $"({baseFormat})" else baseFormat
+
+    let formatMinus left right =
+        let priority = 5uy
+        let baseFormat  = $"{formatImpl priority left} - {formatImpl (priority + 1uy) right}"
+        if parentPriority > priority then $"({baseFormat})" else baseFormat
+
     let formatLow = formatImpl lowest
 
     match expr with
@@ -41,18 +32,9 @@ let rec private formatImpl (parentPriority: OpPriority) (expr: Expr): string =
     | Var      name  -> name
     | Binary (op, left, right) ->
         match op with
-        | Plus     ->
-            let priority = 5uy
-            let formatPlus = formatImpl priority
-            let baseFormat = $"{formatPlus left} + {formatPlus right}"
-            if parentPriority > priority then $"({baseFormat})" else baseFormat
-
-        | Minus    ->
-            let priority = 5uy
-            let baseFormat  = $"{formatImpl priority left} - {formatImpl (priority + 1uy) right}"
-            if parentPriority > priority then $"({baseFormat})" else baseFormat
-        
-        | Multiply -> let formatMul  = formatImpl highest in $"{formatMul left} * {formatMul right}"
+        | Plus     -> formatPlus  left right
+        | Minus    -> formatMinus left right
+        | Multiply -> let formatMul = formatImpl highest in $"{formatMul left} * {formatMul right}"
         | Max      -> $"max({formatLow left}, {formatLow right})"
         | Min      -> $"min({formatLow left}, {formatLow right})"
     | If (cond, ifTrue, ifFalse) ->
