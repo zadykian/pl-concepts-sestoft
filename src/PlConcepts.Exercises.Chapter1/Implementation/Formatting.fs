@@ -11,15 +11,20 @@ type private OpAssociativity =
     | Right
     | Invariant
 
-/// Definitions of operators' behaviour:
+/// Definition of operator's behaviour:
 /// relative priority and associativity.
-let private opDefinitions: Map<BinaryOp, OpPriority * OpAssociativity> =
+type private OpDef = OpPriority * OpAssociativity
+
+let private opDefinitions: Map<BinaryOp, OpDef> =
     [
         Plus,     (5uy, Invariant)
         Minus,    (5uy, Left)
         Multiply, (6uy, Invariant)
     ]
     |> Map.ofList
+
+/// Get definition of binary operator 'op'.
+let private def (op: BinaryOp): OpDef = Map.find op opDefinitions 
 
 /// Get string representation of 'expr' expression.
 let rec format (expr: Expr): string =
