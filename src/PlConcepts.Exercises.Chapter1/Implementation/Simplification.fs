@@ -8,7 +8,7 @@ let private zero = Constant 0
 let rec simplify (expr: Expr): Expr =
     match expr with
     | Binary (op, left, right) ->
-        let defaultBinary op = Binary (op, left, right)
+        let defaultBinary op = simplify (Binary (op, simplify left, simplify right))
 
         match op with
         | Plus ->
