@@ -51,7 +51,7 @@ let ``ternary operator left branch`` () =
     assertFormat expression "y = 0 ? 2 : 8"
 
 [<Test>]
-let ``priority parentheses in complex expression`` () =
+let ``parentheses in complex expression`` () =
     let expression =
         Binary (
             Multiply,
@@ -59,3 +59,23 @@ let ``priority parentheses in complex expression`` () =
             Constant 16)
 
     assertFormat expression "(a + 32) * 16"
+
+[<Test>]
+let ``absence of parentheses in expression with equal priority operators`` () =
+    let expression =
+        Binary (
+            Plus,
+            Binary (Plus, Var "a", Constant 32),
+            Constant 16)
+
+    assertFormat expression "a + 32 + 16"
+
+[<Test>]
+let ``parentheses save associativity`` () =
+    let expression =
+        Binary (
+            Minus,
+            Constant 16,
+            Binary (Plus, Var "a", Constant 32))
+
+    assertFormat expression "16 - (32 + 16)"

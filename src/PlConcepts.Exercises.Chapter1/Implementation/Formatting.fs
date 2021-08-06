@@ -16,4 +16,4 @@ let rec format (expr: Expr): string =
         | Multiply -> $"{leftFormat} * {rightFormat}"
         | Max      -> $"max({leftFormat}, {rightFormat})"
         | Min      -> $"min({leftFormat}, {rightFormat})"
-    | If (cond, ifTrue, ifFalse) -> $"{format cond} ? {format ifTrue} : {format ifFalse}"
+    | If (cond, ifTrue, ifFalse) -> $"{format cond} = 0 ? {format ifTrue} : {format ifFalse}"
