@@ -16,12 +16,13 @@ let empty: Env = []
 let rec eval (expr: Expr) (env: Env): int option =
     match expr with
     | Constant value -> Some value
-    | Binary (op, left, right) ->
-        match op with
-        | BinaryOp.Plus -> monad {
-                let! leftRes = eval left env
-                let! rightRes = eval right env
-                return leftRes + rightRes
-            }
-        | _ -> failwith "not implemented!"
+    | Binary (op, left, right) -> monad {
+        let! leftRes = eval left env
+        let! rightRes = eval right env
+        return
+            match op with
+            | BinaryOp.Plus     -> leftRes + rightRes
+            | BinaryOp.Multiply -> leftRes * rightRes
+            | _ -> failwith "not implemented!"
+        }
     | _ -> failwith "not implemented!"

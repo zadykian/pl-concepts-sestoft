@@ -4,10 +4,9 @@ module PlConcepts.Exercises.Chapter1.Types
 type BinaryOp =
     | Plus
     | Multiply
-    | Subtract
+    | Minus
     | Max
     | Min
-    | Equals
 
 /// Variable name.
 type VarName = string
