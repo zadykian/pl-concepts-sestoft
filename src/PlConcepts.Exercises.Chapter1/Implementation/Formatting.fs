@@ -6,4 +6,14 @@ open PlConcepts.Exercises.Chapter1.Types
 let rec format (expr: Expr): string =
     match expr with
     | Constant value -> string value
-    | _ -> failwith "not implemented!"
+    | Var      name  -> name
+    | Binary (op, left, right) ->
+        let leftFormat = format left
+        let rightFormat = format right
+        match op with
+        | Plus     -> $"{leftFormat} + {rightFormat}"
+        | Minus    -> $"{leftFormat} - {rightFormat}"
+        | Multiply -> $"{leftFormat} * {rightFormat}"
+        | Max      -> $"max({leftFormat}, {rightFormat})"
+        | Min      -> $"min({leftFormat}, {rightFormat})"
+    | If (cond, ifTrue, ifFalse) -> $"{format cond} ? {format ifTrue} : {format ifFalse}"
