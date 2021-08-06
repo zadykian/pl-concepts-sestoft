@@ -45,5 +45,12 @@ let ``min of two constants`` () =
 
 [<Test>]
 let ``sum of constant and variable`` () =
-    let expression = Binary (Plus, Var "x", Constant 16)
-    evalAndCheck [("x", 8)] expression 24
+    let expression  = Binary (Plus, Var "x", Constant 16)
+    let environment = ["x", 8] 
+    evalAndCheck environment expression 24
+
+[<Test>]
+let ``fail if variable is not in scope`` () =
+    let expression  = Binary (Plus, Var "x", Constant 16)
+    let environment = ["y", 4]
+    eval expression environment |> should equal None
