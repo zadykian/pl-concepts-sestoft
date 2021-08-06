@@ -10,3 +10,8 @@ open NUnit.Framework
 let ``evaluate constant`` () =
     let expression = Constant 0
     eval expression empty |> should equal (Some 0)
+
+[<Test>]
+let ``evaluate sum of two constants`` () =
+    let expression = Binary (BinaryOp.Plus, Constant 16, Constant 16)
+    eval expression empty |> should equal (Some 32)
